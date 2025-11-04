@@ -1,6 +1,8 @@
 package com.mauricio.mongo.ex.post_app.controller;
 
 import com.mauricio.mongo.ex.post_app.model.User;
+import com.mauricio.mongo.ex.post_app.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +16,12 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
-        User u1 = new User("1", "Mauricio", "maur@gmail.com");
-        User u2 = new User("2", "Ana", "ana@gmail.com");
-        List<User> list = new ArrayList<>();
-
-        list.addAll(Arrays.asList(u1, u2));
+        List<User> list = userService.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
