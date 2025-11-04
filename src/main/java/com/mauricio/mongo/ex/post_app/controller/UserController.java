@@ -2,6 +2,7 @@ package com.mauricio.mongo.ex.post_app.controller;
 
 import com.mauricio.mongo.ex.post_app.dto.UserRequest;
 import com.mauricio.mongo.ex.post_app.dto.UserResponse;
+import com.mauricio.mongo.ex.post_app.model.Post;
 import com.mauricio.mongo.ex.post_app.model.User;
 import com.mauricio.mongo.ex.post_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,10 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable String id, @RequestBody UserRequest request){
         return ResponseEntity.ok().body(userService.atualizar(id, request));
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findAllPostByAuthorId(@PathVariable String id){
+        return ResponseEntity.ok().body(userService.findAllPostByAuthorId(id));
     }
 }
