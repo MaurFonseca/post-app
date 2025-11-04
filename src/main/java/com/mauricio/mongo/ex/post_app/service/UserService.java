@@ -1,6 +1,7 @@
 package com.mauricio.mongo.ex.post_app.service;
 
 
+import com.mauricio.mongo.ex.post_app.dto.UserRequest;
 import com.mauricio.mongo.ex.post_app.dto.UserResponse;
 import com.mauricio.mongo.ex.post_app.model.User;
 import com.mauricio.mongo.ex.post_app.repository.UserRepository;
@@ -27,5 +28,11 @@ public class UserService {
     public UserResponse findById(String id){
         return mapperTo.mapToUserResponse(userRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado")));
+    }
+
+    public UserResponse insert(UserRequest request){
+        User user = new User(null, request.nome(), request.email());
+        userRepository.insert(user);
+        return mapperTo.mapToUserResponse(user);
     }
 }
