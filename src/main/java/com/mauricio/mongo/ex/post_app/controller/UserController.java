@@ -1,5 +1,6 @@
 package com.mauricio.mongo.ex.post_app.controller;
 
+import com.mauricio.mongo.ex.post_app.dto.UserResponse;
 import com.mauricio.mongo.ex.post_app.model.User;
 import com.mauricio.mongo.ex.post_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
-        List<User> list = userService.findAll();
+    public ResponseEntity<List<UserResponse>> findAll(){
+        List<UserResponse> list = userService.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
