@@ -38,4 +38,10 @@ public class UserController {
         URI uri = UriComponentsBuilder.fromPath("").buildAndExpand().toUri();
         return ResponseEntity.created(uri).body(userService.insert(request));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

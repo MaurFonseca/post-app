@@ -35,4 +35,9 @@ public class UserService {
         userRepository.insert(user);
         return mapperTo.mapToUserResponse(user);
     }
+
+    public void delete(String id){
+        userRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado"));
+        userRepository.deleteById(id);
+    }
 }
