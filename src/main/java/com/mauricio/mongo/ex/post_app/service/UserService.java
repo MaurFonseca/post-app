@@ -40,4 +40,17 @@ public class UserService {
         userRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado"));
         userRepository.deleteById(id);
     }
+
+    public UserResponse atualizar(String id, UserRequest request){
+        User user = userRepository.findById(id).orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado"));
+
+        if (request.nome() != null){
+            user.setNome(request.nome());
+        }
+        if (request.email() !=null){
+            user.setEmail(request.email());
+        }
+        userRepository.save(user);
+        return mapperTo.mapToUserResponse(user);
+    }
 }
