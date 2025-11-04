@@ -1,5 +1,6 @@
 package com.mauricio.mongo.ex.post_app.model;
 
+import com.mauricio.mongo.ex.post_app.dto.AuthorDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,5 @@ public class Post {
 
     private String body;
 
-    private User author;
+    private AuthorDto author;
 }

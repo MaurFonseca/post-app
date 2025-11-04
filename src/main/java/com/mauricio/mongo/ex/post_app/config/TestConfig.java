@@ -1,5 +1,6 @@
 package com.mauricio.mongo.ex.post_app.config;
 
+import com.mauricio.mongo.ex.post_app.dto.AuthorDto;
 import com.mauricio.mongo.ex.post_app.model.Post;
 import com.mauricio.mongo.ex.post_app.model.User;
 import com.mauricio.mongo.ex.post_app.repository.PostRepository;
@@ -32,7 +33,7 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(maria, alex, mauricio));
 
-        Post p1 = new Post(null, LocalDate.now(), "Passei no AGI!!", "Feliz em anunciar que passei no programa de devs do agi!", mauricio);
+        Post p1 = new Post(null, LocalDate.now(), "Passei no AGI!!", "Feliz em anunciar que passei no programa de devs do agi!", new AuthorDto(mauricio.getId(), mauricio.getNome()));
 
         postRepository.save(p1);
     }
