@@ -36,5 +36,8 @@ public class TestConfig implements CommandLineRunner {
         Post p1 = new Post(null, LocalDate.now(), "Passei no AGI!!", "Feliz em anunciar que passei no programa de devs do agi!", new AuthorDto(mauricio.getId(), mauricio.getNome()));
 
         postRepository.save(p1);
+
+        mauricio.getPosts().add(p1);
+        userRepository.save(mauricio);
     }
 }
