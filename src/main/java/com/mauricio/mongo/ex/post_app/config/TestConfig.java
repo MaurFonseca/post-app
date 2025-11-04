@@ -1,6 +1,7 @@
 package com.mauricio.mongo.ex.post_app.config;
 
 import com.mauricio.mongo.ex.post_app.dto.AuthorDto;
+import com.mauricio.mongo.ex.post_app.dto.CommentsDTO;
 import com.mauricio.mongo.ex.post_app.model.Post;
 import com.mauricio.mongo.ex.post_app.model.User;
 import com.mauricio.mongo.ex.post_app.repository.PostRepository;
@@ -34,6 +35,13 @@ public class TestConfig implements CommandLineRunner {
         userRepository.saveAll(Arrays.asList(maria, alex, mauricio));
 
         Post p1 = new Post(null, LocalDate.now(), "Passei no AGI!!", "Feliz em anunciar que passei no programa de devs do agi!", new AuthorDto(mauricio.getId(), mauricio.getNome()));
+
+        postRepository.save(p1);
+
+        CommentsDTO c1 = new CommentsDTO(new AuthorDto(alex.getId(), alex.getNome()), "Boa meu mano!!", LocalDate.now());
+        CommentsDTO c2 = new CommentsDTO(new AuthorDto(maria.getId(), maria.getNome()), "Parabnes", LocalDate.now());
+
+        p1.getComments().addAll(Arrays.asList(c1,c2));
 
         postRepository.save(p1);
 
