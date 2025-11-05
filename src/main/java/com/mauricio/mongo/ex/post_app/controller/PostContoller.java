@@ -25,4 +25,12 @@ public class PostContoller {
     public ResponseEntity<List<Post>> findByName(@RequestParam(value = "text", defaultValue = "") String text){
         return ResponseEntity.ok().body(service.findByTitle(text));
     }
+
+    @GetMapping("/fullsearch")
+    public ResponseEntity<List<Post>> fullSearch(
+            @RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "minDate", defaultValue = "")String minDate,
+            @RequestParam(value = "maxDate", defaultValue = "")String maxDate){
+        return ResponseEntity.ok().body(service.fullSearch(text, minDate, maxDate));
+    }
 }
